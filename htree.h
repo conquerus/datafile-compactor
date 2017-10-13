@@ -13,17 +13,19 @@ class htree {
 
  private:
   int size;
-  int sizeIsOne();
-  void deleteNode();
-  void insertNode(double weight, node * left, node * right) ;
-  void swap(int i, int j);
-  void heapify(int i);
   node elem[SIZE];
+  
+  int SizeIsOne();
+  void DeleteNode();
+  void InsertNode(double weight, node * left, node * right) ;
+  void Swap(int i, int j);
+  void Heapify(int i);
+
  public:
-  node * root_node();
   htree();
-  void buildHeap(char label[], double *weight, int size_in);
-  void buildHuffman();
-  void printHuffman(node * root, int arr[], int top);
+  node * RootNode();
+  void BuildHeap(char label[], double *weight, int size_in);
+  void BuildHuffman();
+  void PrintHuffman(node * root, int arr[], int top);
 
 };

@@ -6,10 +6,11 @@ class encoder {
   int index;
   char c;
   char buffer;
-  void add_bit(int bit);
+  
+  void AddBit(int bit);
   
  public:
     encoder();
-    void compress();
-    void close();
+    void Compress();
+    void Close();
 };

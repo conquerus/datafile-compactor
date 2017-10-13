@@ -7,11 +7,11 @@ encoder::encoder() {
   buffer = 0;
 }
 
-void encoder::close() {
+void encoder::Close() {
     file.close();
 }
 
-void encoder::add_bit(int bit) {
+void encoder::AddBit(int bit) {
 
   if (index >= 7){
     //write to data file
@@ -30,134 +30,136 @@ void encoder::add_bit(int bit) {
 }
 
 //hardcoded for this dataset...
-void encoder::compress() {
+void encoder::Compress() {
 
     while ((c = getchar()) != EOF) {
-    switch(c) {
-    case '0': {
-      add_bit(0);
-      add_bit(1);
-      break;
+      
+      switch(c) {
+      case '0': {
+        AddBit(0);
+        AddBit(1);
+        break;
+      }
+      case '1': {
+        AddBit(0);
+        AddBit(0);
+        AddBit(1);
+        break;
+      }
+      case '5': {
+        AddBit(1);
+        AddBit(1);
+        AddBit(0);
+        AddBit(1);
+        break;
+      }
+      case '2': {
+        AddBit(1);
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        break;
+      }
+      case '3': {
+        AddBit(1);
+        AddBit(0);
+        AddBit(1);
+        AddBit(1);
+        break;
+      }
+      case '7': {
+        AddBit(1);
+        AddBit(0);
+        AddBit(1);
+        AddBit(0);
+        break;
+      }
+      case '9': {
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        AddBit(0);
+        break;
+      }
+      case '4': {
+        AddBit(0);
+        AddBit(0);
+        AddBit(0);
+        AddBit(1);
+        break;
+      }
+      case '.': {
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        break;
+      }
+      case 'e': {
+        AddBit(0);
+        AddBit(0);
+        AddBit(0);
+        AddBit(0);
+        break;
+      }
+      case '6': {
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        AddBit(0);
+        break;
+      }
+      case ' ': {
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        AddBit(0);
+        AddBit(1);
+        break;
+      }
+      case '8': {
+        AddBit(1);
+        AddBit(1);
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        break;
+      }
+      case '-': {
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        AddBit(1);
+        AddBit(1);
+        break;
+      }
+      case '+': {
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        AddBit(1);
+        AddBit(0);
+        AddBit(1);
+        break;
+      }
+      case '\n': {
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        AddBit(1);
+        AddBit(0);
+        AddBit(0);
+        break;
+      }
+      default: printf("error");
     }
-    case '1': {
-      add_bit(0);
-      add_bit(0);
-      add_bit(1);
-      break;
-    }
-    case '5': {
-      add_bit(1);
-      add_bit(1);
-      add_bit(0);
-      add_bit(1);
-      break;
-    }
-    case '2': {
-      add_bit(1);
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      break;
-    }
-    case '3': {
-      add_bit(1);
-      add_bit(0);
-      add_bit(1);
-      add_bit(1);
-      break;
-    }
-    case '7': {
-      add_bit(1);
-      add_bit(0);
-      add_bit(1);
-      add_bit(0);
-      break;
-    }
-    case '9': {
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      add_bit(0);
-      break;
-    }
-    case '4': {
-      add_bit(0);
-      add_bit(0);
-      add_bit(0);
-      add_bit(1);
-      break;
-    }
-    case '.': {
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      break;
-    }
-    case 'e': {
-      add_bit(0);
-      add_bit(0);
-      add_bit(0);
-      add_bit(0);
-      break;
-    }
-    case '6': {
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      add_bit(0);
-      break;
-    }
-    case ' ': {
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      add_bit(0);
-      add_bit(1);
-      break;
-    }
-    case '8': {
-      add_bit(1);
-      add_bit(1);
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      break;
-    }
-    case '-': {
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      add_bit(1);
-      add_bit(1);
-      break;
-    }
-    case '+': {
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      add_bit(1);
-      add_bit(0);
-      add_bit(1);
-      break;
-    }
-    case '\n': {
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      add_bit(1);
-      add_bit(0);
-      add_bit(0);
-      break;
-    }
-    default: printf("error");
-    }
+      
   }
 
   //fill up the extra space in the last char
   for (;index<=7;index++){
-    add_bit(0);
+    AddBit(0);
   }
 }

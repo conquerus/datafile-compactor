@@ -6,7 +6,7 @@
 typedef struct {
   char label;
   unsigned long int count;
-}  symbol;
+} symbol;
 
 symbol symbols[NUM_CHARS] = {{'+', 0},
                              {'-', 0},
@@ -25,7 +25,7 @@ symbol symbols[NUM_CHARS] = {{'+', 0},
                              {'8', 0},
                              {'9', 0}};
 
-int compare_symbol (const void * a, const void * b)
+int CompareSymbol (const void * a, const void * b)
 {
 
   symbol *c = (symbol *)a;
@@ -34,7 +34,7 @@ int compare_symbol (const void * a, const void * b)
   return ( c->count - d->count );
 }
 
-int counted(char c) {
+int Counted(char c) {
   int i;
   for(i=NUM_CHARS;i--;) {
     if (c==symbols[i].label){
@@ -45,7 +45,7 @@ int counted(char c) {
   return -1;
 }
           
-void print(unsigned long int total) {
+void Print(unsigned long int total) {
   int i;
   for(i=NUM_CHARS;i--;)
     if (symbols[i].label == '\n')
@@ -63,13 +63,13 @@ int main() {
   int i;
   
   while ((c=getchar()) != EOF) {
-    if ((i=counted(c)) != -1) 
+    if ((i=Counted(c)) != -1) 
       (symbols[i].count)++;
     nc++;
   }
 
-  qsort(symbols, NUM_CHARS, sizeof(symbol), compare_symbol);
-  print(nc);
+  qsort(symbols, NUM_CHARS, sizeof(symbol), CompareSymbol);
+  Print(nc);
   printf("\n%ld",nc);
   
   return 0;
